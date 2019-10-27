@@ -11,9 +11,7 @@ class PhotoCard extends Component {
 
     state = { isModalOpen: false };
     
-    openModal = () => this.setState({ isModalOpen: true });
-    
-    closeModal = () => this.setState({ isModalOpen: false });
+    handelModal = () => this.setState({ isModalOpen: !this.state.isModalOpen });
 
   render() {
       const {photo:{ webformatURL, largeImageURL, likes, views, comments, downloads }, query} = this.props;
@@ -40,10 +38,10 @@ class PhotoCard extends Component {
           </p>
         </div>
 
-        <button type="button" className={fullscreenButton} onClick={this.openModal}>
+        <button type="button" className={fullscreenButton} onClick={this.handelModal}>
           <i className="material-icons">zoom_out_map</i>
         </button>
-        {this.state.isModalOpen && <Modal onClose={this.closeModal} imageURL={largeImageURL} query={query}></Modal>}
+        {this.state.isModalOpen && <Modal onClose={this.handelModal} imageURL={largeImageURL} query={query}></Modal>}
       </div>
     );
   }
